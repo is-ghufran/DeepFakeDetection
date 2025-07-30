@@ -1,4 +1,5 @@
 # backend/model_utils.py
+
 import os
 import cv2
 import numpy as np
@@ -6,7 +7,6 @@ import tensorflow as tf
 from tensorflow import keras
 
 # --- Configuration ---
-# These should match the settings used during training
 IMG_SIZE = 224
 MAX_SEQ_LENGTH = 20
 
@@ -46,28 +46,24 @@ def build_feature_extractor():
         input_shape=(IMG_SIZE, IMG_SIZE, 3)
     )
     base_model.trainable = False
-    
+
     inputs = keras.Input((IMG_SIZE, IMG_SIZE, 3))
     preprocessed = keras.applications.efficientnet.preprocess_input(inputs)
     outputs = base_model(preprocessed, training=False)
     return keras.Model(inputs, outputs, name="feature_extractor")
-    
-    # backend/model_utils.py
 
-def load_and_prepare_model(model_path=None, extractor="efficientnet"):
+def load_and_prepare_model(model_path=None):
+    """Loads the main Keras model and builds the feature extractor."""
     if model_path is None:
-        model_path = os.path.join(os.path.dirname(__file__), "deepfake_detection_model_final.h5")
+        model_path = os.path.join(os.path.dirname(__file__), "deepfake_detection_model_final_new.h5")
 
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"Model file not found at {model_path}")
-    
-    main_model = keras.models.load_model(model_path)
 
-    if extractor == "efficientnet":
-        feature_extractor = build_efficientnet_extractor()
-    elif extractor == "inceptionv3":
-        feature_extractor = build_inceptionv3_extractor()
-    else:
-        raise ValueError(f"Unknown extractor type: {extractor}")
+    try:
+        main_model = keras.models.load_model(model_path, compile=False)
+    except Exception as e:
+        raise RuntimeError(f"Error loading model: {e}")
 
+    feature_extractor = build_feature_extractor()
     return main_model, feature_extractor
