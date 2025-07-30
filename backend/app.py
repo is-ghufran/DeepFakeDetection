@@ -19,12 +19,9 @@ app = FastAPI(title="Deepfake Detection API")
 
 # --- CORS (Cross-Origin Resource Sharing) ---
 origins = [
-    "http://localhost",
-    "http://localhost:8080",
-    "http://127.0.0.1:5500",
-    "null",
-    "https://deepfakedetection-ia0n.onrender.com/"
+    "https://deepfakedetection-1-qx04.onrender.com"
 ]
+
 
 app.add_middleware(
     CORSMiddleware,
