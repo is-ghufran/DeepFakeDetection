@@ -52,15 +52,17 @@ def build_feature_extractor():
     outputs = base_model(preprocessed, training=False)
     return keras.Model(inputs, outputs, name="feature_extractor")
     
-def load_and_prepare_model():
-    model_path = os.path.join(os.path.dirname(__file__), "deepfake_detection_model_final_new.h5")
-    print(f"MODEL PATH: {model_path}")
-    print(f"FILE EXISTS: {os.path.exists(model_path)}")
-
+    
+    def load_and_prepare_model(model_path="deepfake_detection_model_final_new.h5"):
+    """Loads the main Keras model and builds the feature extractor."""
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"Model file not found at {model_path}")
         
+    # Load the main sequence model
+    # Note: If your model uses custom objects, you might need to provide a custom_objects dictionary
     main_model = keras.models.load_model(model_path)
+    
+    # Build the feature extractor (as it's not saved within the main model)
     feature_extractor = build_feature_extractor()
     
     return main_model, feature_extractor
