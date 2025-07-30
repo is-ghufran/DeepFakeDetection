@@ -19,7 +19,7 @@ app = FastAPI(title="Deepfake Detection API")
 
 # --- CORS (Cross-Origin Resource Sharing) ---
 origins = [
-    "https://deepfakedetection-1-qx04.onrender.com"
+    "https://deepfakedetection-ia0n.onrender.com"
 ]
 
 
