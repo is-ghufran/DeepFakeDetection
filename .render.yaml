@@ -1,10 +1,15 @@
+# .render.yaml
+
 services:
   - type: web
     name: deepfake-detection-api
     env: python
     plan: free
+    # The build command is correct, leave it as is
     buildCommand: pip install -r backend/requirements.txt
-    startCommand: bash backend/start.sh
+    # --- CHANGE THIS LINE ---
+    startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+    # --- END OF CHANGE ---
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.12
