@@ -51,11 +51,12 @@ def build_feature_extractor():
     preprocessed = keras.applications.efficientnet.preprocess_input(inputs)
     outputs = base_model(preprocessed, training=False)
     return keras.Model(inputs, outputs, name="feature_extractor")
-
-def load_and_prepare_model():
-    """Loads the main Keras model and builds the feature extractor."""
-    model_path = os.path.join(os.path.dirname(__file__), "deepfake_detection_model_final_new.h5")
     
+def load_and_prepare_model():
+    model_path = os.path.join(os.path.dirname(__file__), "deepfake_detection_model_final_new.h5")
+    print(f"MODEL PATH: {model_path}")
+    print(f"FILE EXISTS: {os.path.exists(model_path)}")
+
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"Model file not found at {model_path}")
         
