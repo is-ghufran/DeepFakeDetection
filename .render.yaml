@@ -1,14 +1,21 @@
-# .render.yaml
-
 services:
-  - type: web
-    name: deepfake-detection-api
-    env: python
-    plan: free
-    buildCommand: pip install -r backend/requirements.txt
-    startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
-    envVars:
-      - key: PYTHON_VERSION
-        # --- CHANGE THIS VALUE ---
-        value: "3.11" 
-    autoDeploy: true
+
+  - type: web
+
+    name: deepfake-detection-api
+
+    env: python
+
+    plan: free
+
+    buildCommand: pip install -r backend/requirements.txt
+
+    startCommand: bash backend/start.sh
+
+    envVars:
+
+      - key: PYTHON_VERSION
+
+        value: 3.10.12
+
+    autoDeploy: true
