@@ -52,17 +52,22 @@ def build_feature_extractor():
     outputs = base_model(preprocessed, training=False)
     return keras.Model(inputs, outputs, name="feature_extractor")
     
+    # backend/model_utils.py
+
+def build_feature_extractor():
+    """Builds an InceptionV3 model for feature extraction."""
     
-    def load_and_prepare_model(model_path="deepfake_detection_model_final_new.h5"):
-   
-    if not os.path.exists(model_path):
-        raise FileNotFoundError(f"Model file not found at {model_path}")
-        
-    # Load the main sequence model
-    # Note: If your model uses custom objects, you might need to provide a custom_objects dictionary
-    main_model = keras.models.load_model(model_path)
+    feature_extractor = keras.applications.InceptionV3(
+        weights="imagenet",
+        include_top=False,
+        pooling="avg",
+        input_shape=(IMG_SIZE, IMG_SIZE, 3)
+    )
     
-    # Build the feature extractor (as it's not saved within the main model)
-    feature_extractor = build_feature_extractor()
+    preprocess_input = keras.applications.inception_v3.preprocess_input
     
-    return main_model, feature_extractor
+    inputs = keras.Input((IMG_SIZE, IMG_SIZE, 3))
+    preprocessed = preprocess_input(inputs)
+    outputs = feature_extractor(preprocessed)
+    
+    return keras.Model(inputs, outputs, name="feature_extractor")
