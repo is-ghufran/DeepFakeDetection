@@ -14,13 +14,10 @@ env/
 .DS_Store
 
 # Ignore all model files...
-*.h5
 *.pkl
 *.ckpt
 *.tflite
 
-# ...except the one you're using
-!backend/deepfake_detection_model_final_new.h5
 
 # System logs and temporary files
 *.log
