@@ -1,19 +1,33 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc
+*.py[cod]
+*.so
+
+# Virtual environments
 venv/
-*.env
+env/
+.tf-env/
+.venv/
+.python-version
 
-# Data and Model Files
-/deepfake_data/
-*.zip
+# MacOS metadata
+.DS_Store
+
+# Model files and large binaries
 *.h5
-*.weights.h5
+*.pkl
+*.ckpt
+*.tflite
 
-# Kaggle API key
-kaggle.json
+# System logs and temporary files
+*.log
+*.tmp
+*.swp
+*.bak
 
-# IDE and OS specific
-.idea/
+# VSCode and IDE configs
 .vscode/
-*.DS_Store
+.idea/
+
+# Render-specific cache
+render.yaml.cache
