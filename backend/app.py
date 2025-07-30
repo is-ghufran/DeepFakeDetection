@@ -18,10 +18,11 @@ logger = logging.getLogger(__name__)
 app = FastAPI(title="Deepfake Detection API")
 
 # --- CORS (Cross-Origin Resource Sharing) ---
-origins = [
-    "https://deepfakedetection-ia0n.onrender.com"
-]
+from fastapi.middleware.cors import CORSMiddleware
 
+origins = [
+    "https://deepfakedetection-1-qx04.onrender.com",  # your frontend Render URL
+]
 
 app.add_middleware(
     CORSMiddleware,
