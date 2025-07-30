@@ -1,11 +1,11 @@
 services:
   - type: web
-    name: deepfake-backend
+    name: deepfake-detection-api
     env: python
-    buildCommand: pip install -r backend/requirements.txt
-    startCommand: ./backend/start.sh
-    envVars:
-      - key: PORT
-        value: 8000
     plan: free
-    region: oregon
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: bash backend/start.sh
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.12
+    autoDeploy: true
