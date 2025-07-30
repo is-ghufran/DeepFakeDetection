@@ -54,20 +54,20 @@ def build_feature_extractor():
     
     # backend/model_utils.py
 
-def build_feature_extractor():
-    """Builds an InceptionV3 model for feature extraction."""
+def load_and_prepare_model(model_path=None, extractor="efficientnet"):
+    if model_path is None:
+        model_path = os.path.join(os.path.dirname(__file__), "deepfake_detection_model_final_new.h5")
+
+    if not os.path.exists(model_path):
+        raise FileNotFoundError(f"Model file not found at {model_path}")
     
-    feature_extractor = keras.applications.InceptionV3(
-        weights="imagenet",
-        include_top=False,
-        pooling="avg",
-        input_shape=(IMG_SIZE, IMG_SIZE, 3)
-    )
-    
-    preprocess_input = keras.applications.inception_v3.preprocess_input
-    
-    inputs = keras.Input((IMG_SIZE, IMG_SIZE, 3))
-    preprocessed = preprocess_input(inputs)
-    outputs = feature_extractor(preprocessed)
-    
-    return keras.Model(inputs, outputs, name="feature_extractor")
+    main_model = keras.models.load_model(model_path)
+
+    if extractor == "efficientnet":
+        feature_extractor = build_efficientnet_extractor()
+    elif extractor == "inceptionv3":
+        feature_extractor = build_inceptionv3_extractor()
+    else:
+        raise ValueError(f"Unknown extractor type: {extractor}")
+
+    return main_model, feature_extractor
