@@ -1,11 +1,13 @@
-# backend/requirements.txt
+fastapi
 
-fastapi==0.116.1
-uvicorn==0.35.0
-python-multipart==0.0.20
-tensorflow==2.15.0
-keras==2.15.0
-opencv-python==4.11.0.86
-numpy==1.26.4
-httpx==0.28.1
-h5py==3.14.0
+uvicorn[standard]
+
+python-multipart
+
+tensorflow
+
+opencv-python
+
+numpy
+
+httpx
