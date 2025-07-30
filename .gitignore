@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+*.env
+
+# Data and Model Files
+/deepfake_data/
+*.zip
+*.h5
+*.weights.h5
+
+# Kaggle API key
+kaggle.json
+
+# IDE and OS specific
+.idea/
+.vscode/
+*.DS_Store
