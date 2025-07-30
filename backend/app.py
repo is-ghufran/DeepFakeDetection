@@ -20,8 +20,11 @@ app = FastAPI(title="Deepfake Detection API")
 # --- CORS (Cross-Origin Resource Sharing) ---
 from fastapi.middleware.cors import CORSMiddleware
 
+# backend/app.py
+
 origins = [
-    "https://deepfakedetection-1-qx04.onrender.com",  # your frontend Render URL
+    "https://deepfakedetection-1-qx04.onrender.com", # Your frontend URL
+    "https://deepfakedetection-hxcv.onrender.com",   # Your backend URL (optional but good practice)
 ]
 
 app.add_middleware(
