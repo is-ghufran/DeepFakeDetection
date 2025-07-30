@@ -5,7 +5,7 @@ from model_utils import load_video
 # --- Configuration ---
 IMG_SIZE = 224
 MAX_SEQ_LENGTH = 20
-NUM_FEATURES = 1280 # From EfficientNetB0
+NUM_FEATURES = 2048 # From EfficientNetB0
 
 def predict_on_video(video_path: str, model, feature_extractor):
     """
