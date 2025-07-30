@@ -54,7 +54,7 @@ def build_feature_extractor():
     
     
     def load_and_prepare_model(model_path="deepfake_detection_model_final_new.h5"):
-    """Loads the main Keras model and builds the feature extractor."""
+   
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"Model file not found at {model_path}")
         
