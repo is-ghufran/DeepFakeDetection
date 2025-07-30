@@ -840,7 +840,8 @@
         formData.append("video_file", selectedFile);
 
         try {
-          const response = await fetch("https://deepfakedetection-hxcv.onrender.com/predict/", {
+          //const response = await fetch("https://deepfakedetection-hxcv.onrender.com/predict/", {
+             const response = await fetch("https://isghufran-deepfakedetection.hf.space/predict/", {
             method: "POST",
             body: formData,
           });
