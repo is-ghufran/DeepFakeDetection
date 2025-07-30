@@ -10,7 +10,7 @@ services:
     # --- CHANGE THIS LINE ---
     startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
     # --- END OF CHANGE ---
-    envVars:
+    envVars: 
       - key: PYTHON_VERSION
         value: 3.10.12
     autoDeploy: true
