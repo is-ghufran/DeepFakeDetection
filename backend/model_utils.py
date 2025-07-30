@@ -56,7 +56,7 @@ def build_feature_extractor():
 
 def load_and_prepare_model(model_path=None, extractor="efficientnet"):
     if model_path is None:
-        model_path = os.path.join(os.path.dirname(__file__), "deepfake_detection_model_final_new.h5")
+        model_path = os.path.join(os.path.dirname(__file__), "deepfake_detection_model_final.h5")
 
     if not os.path.exists(model_path):
         raise FileNotFoundError(f"Model file not found at {model_path}")
